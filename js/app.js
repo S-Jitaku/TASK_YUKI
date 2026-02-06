@@ -200,4 +200,16 @@ function toggleSchoolTasks(){
   render();
 }
 
+function resetToInitial() {
+  if (!confirm("すべてのチェック状態を消して、最初の状態に戻します。よろしいですか？")) {
+    return;
+  }
+
+  // localStorage を全削除
+  localStorage.removeItem("taskData");
+
+  // ページを再読み込み
+  location.reload();
+}
+
 loadTaskData();
