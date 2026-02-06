@@ -224,6 +224,8 @@ function playRandomEffect(el) {
   const effects = ["effect-pop", "effect-spin", "effect-float"];
   const effect = effects[Math.floor(Math.random() * effects.length)];
 
+  console.log("Applying effect:", effect);  // 追加したログで確認
+  
   el.classList.add("effect", effect);
 
   setTimeout(() => {
