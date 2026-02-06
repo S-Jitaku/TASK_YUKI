@@ -100,15 +100,7 @@ label[for="schoolToggle"] { position:fixed; left:35px; bottom:10px; font-size:16
     opacity: 0;
   }
 }
-@keyframes celebrate {
-  0% { transform: scale(1); background: gold; }
-  50% { transform: scale(1.2); background: orange; }
-  100% { transform: scale(1); background: gold; }
-}
 
-.celebrate {
-  animation: celebrate 1s infinite;
-}
 textarea { width:90%; height:70px; font-size:16px; }
 select,button { font-size:16px; margin:5px; }
 
