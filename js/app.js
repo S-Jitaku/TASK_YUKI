@@ -238,20 +238,31 @@ function playRandomEffect(el) {
   }, 600);  // エフェクトが終わった後に星を表示
 }
 function createStar(x, y) {
-  const star = document.createElement("div");
-  star.textContent = "⭐";
-  star.className = "star";
+  // 5つの星を表示するためにループを使う
+  for (let i = 0; i < 5; i++) {
+    const star = document.createElement("div");
+    star.textContent = "⭐";
+    star.className = "star";
 
-  const dx = (Math.random() - 0.5) * 200;
-  const dy = -Math.random() * 200;
+    // ランダムに星の位置をずらす
+    const dx = (Math.random() - 0.5) * 200;
+    const dy = -Math.random() * 200;
 
-  star.style.left = x + "px";
-  star.style.top = y + "px";
-  star.style.setProperty("--x", dx + "px");
-  star.style.setProperty("--y", dy + "px");
+    star.style.left = x + dx + "px";  // ランダムにずらしたx座標
+    star.style.top = y + dy + "px";   // ランダムにずらしたy座標
+    star.style.setProperty("--x", dx + "px");
+    star.style.setProperty("--y", dy + "px");
 
-  document.body.appendChild(star);
+    // 星を画面に追加
+    document.body.appendChild(star);
 
-  setTimeout(() => star.remove(), 1000);
+    // 1秒後に星を消す
+    setTimeout(() => star.remove(), 1000);
+
+    // 100msごとに星を表示
+    setTimeout(() => {
+      document.body.appendChild(star);
+    }, i * 100);  // 100ms間隔で表示
+  }
 }
 loadTaskData();
