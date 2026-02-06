@@ -239,7 +239,7 @@ function playRandomEffect(el) {
 }
 function createStar(x, y) {
   const star = document.createElement("div");
-  star.textContent = "⭐⭐⭐⭐⭐";
+  star.textContent = "⭐";
   star.className = "star";
 
   const dx = (Math.random() - 0.5) * 200;
