@@ -273,12 +273,21 @@ function playSound() {
   okSound.currentTime = 0;
   okSound.play();
 }
+let celebrateTimer = null;
+
 function checkCompleteEffect(count, total) {
   if (count === total && total > 0) {
+    // すでにタイマーが動いていたら何もしない
+    if (celebrateTimer) return;
+
     document.body.classList.add("celebrate");
     alert("🎉 ぜんぶできたね！すごい！！ 🎉");
-  } else {
-    document.body.classList.remove("celebrate");
+
+    // 10秒後にエフェクト終了
+    celebrateTimer = setTimeout(() => {
+      document.body.classList.remove("celebrate");
+      celebrateTimer = null;
+    }, 10000); // 10秒
   }
 }
 loadTaskData();
