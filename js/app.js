@@ -77,8 +77,8 @@ function render(){
         doneData[id] = isDone;
         localStorage.setItem(dateKey, JSON.stringify(doneData));
         if (isDone) {
-          playRandomEffect(div);
-//          createStar(e.clientX, e.clientY);
+//          playRandomEffect(div);
+          createStar(e.clientX, e.clientY);
         }
         render();
       };
@@ -123,8 +123,8 @@ function render(){
         doneData[id] = isDone;
         localStorage.setItem(dateKey, JSON.stringify(doneData));
         if (isDone) {
-          playRandomEffect(div);
-//          createStar(e.clientX, e.clientY);
+//          playRandomEffect(div);
+          createStar(e.clientX, e.clientY);
         }
         render();
       };
