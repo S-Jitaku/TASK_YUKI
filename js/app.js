@@ -78,7 +78,7 @@ function render(){
         localStorage.setItem(dateKey, JSON.stringify(doneData));
         if (isDone) {
           playRandomEffect(div);
-          createStar(e.clientX, e.clientY);
+//          createStar(e.clientX, e.clientY);
         }
         render();
       };
@@ -124,7 +124,7 @@ function render(){
         localStorage.setItem(dateKey, JSON.stringify(doneData));
         if (isDone) {
           playRandomEffect(div);
-          createStar(e.clientX, e.clientY);
+//          createStar(e.clientX, e.clientY);
         }
         render();
       };
@@ -231,10 +231,15 @@ function playRandomEffect(el) {
   setTimeout(() => {
     el.classList.remove("effect", effect);
   }, 600);
+
+  // エフェクト後に星を表示
+  setTimeout(() => {
+    createStar(el.offsetLeft, el.offsetTop);  // エフェクトの位置に星を表示
+  }, 600);  // エフェクトが終わった後に星を表示
 }
 function createStar(x, y) {
   const star = document.createElement("div");
-  star.textContent = "⭐";
+  star.textContent = "⭐⭐⭐⭐⭐";
   star.className = "star";
 
   const dx = (Math.random() - 0.5) * 200;
