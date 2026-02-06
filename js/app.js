@@ -199,16 +199,6 @@ function exportData(){
   a.click();
 }
 
-function importData(e){
-  const r=new FileReader();
-  r.onload=()=>{
-    taskData=JSON.parse(r.result);
-    localStorage.setItem("taskData",JSON.stringify(taskData));
-    render();
-  };
-  r.readAsText(e.target.files[0]);
-}
-
 function closeParent(){
   parentPanel.style.display="none";
 }
