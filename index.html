@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>こどもタスク</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- 🔐 最初に出るログイン画面 -->
+<div id="loginScreen">
+  <h2>パスワードを入力してください</h2>
+  <input type="password" id="pagePassword">
+  <br><br>
+  <button onclick="login()">OK</button>
+  <p id="loginMsg" style="color:red;"></p>
+</div>
+
+<!-- 🌸 ログイン後に表示される画面 -->
+<div id="mainContent" style="display:none;">
+  <h1 id="date"></h1>
+  <div id="counter"></div>
+
+  <button id="parentBtn" onclick="askPassword()">おうちのひと</button>
+
+  <div id="parentPanel">
+    <h3>編集する曜日</h3>
+
+    <select id="editDay" onchange="loadEditDay()">
+      <option value="common">共通</option>
+      <option value="月">月</option><option value="火">火</option><option value="水">水</option>
+      <option value="木">木</option><option value="金">金</option><option value="土">土</option><option value="日">日</option>
+    </select>
+
+    <div>あさ</div><textarea id="morningBox"></textarea>
+    <div>ゆうがた</div><textarea id="eveningBox"></textarea>
+    <div>ねるまえ</div><textarea id="nightBox"></textarea>
+
+    <div>ならいごと と タスク</div>
+    <div id="lessonEditContainer"></div>
+   <button onclick="addLessonRow()">ならいごとを追加</button>
+
+    <br>
+    <button onclick="saveTasks()">保存</button>
+    <br>
+
+    <button onclick="exportData()">エクスポート</button>
+
+    <br>
+    <button onclick="closeParent()">とじる</button>
+  </div>
+
+  <div id="tasks"></div>
+
+  <label for="schoolToggle">ほいくえん</label>
+  <input type="checkbox" id="schoolToggle" onchange="toggleSchoolTasks()">
+</div>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
