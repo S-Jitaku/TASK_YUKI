@@ -1,5 +1,25 @@
 const weekMap = {"月":"げつ","火":"か","水":"すい","木":"もく","金":"きん","土":"ど","日":"にち"};
 const today = new Date();
+// ===== 毎朝自動リセット =====
+const todayKey = today.toDateString();
+const lastDate = localStorage.getItem("lastOpenDate");
+
+if (lastDate !== todayKey) {
+  // 昨日のチェック状態を削除
+  if (lastDate) {
+    localStorage.removeItem(lastDate);
+  }
+  localStorage.setItem("lastOpenDate", todayKey);
+}
+// ===== 日付が変わったら自動リロード =====
+setInterval(() => {
+  const nowKey = new Date().toDateString();
+  const savedDate = localStorage.getItem("lastOpenDate");
+
+  if (nowKey !== savedDate) {
+    location.reload();
+  }
+}, 60000); // 1分ごとにチェック
 const weekKanji = today.toLocaleDateString("ja-JP",{weekday:"short"});
 const dateKey = today.toDateString();
 const month = today.getMonth()+1;
@@ -201,14 +221,17 @@ function toggleSchoolTasks(){
 }
 
 function resetToInitial() {
-  if (!confirm("すべてのチェック状態を消して、最初の状態に戻します。よろしいですか？")) {
+  if (!confirm("すべてのチェック状態と編集内容を消して、最初の状態に戻します。よろしいですか？")) {
     return;
   }
 
-  // localStorage を全削除
+  // タスク定義を削除
   localStorage.removeItem("taskData");
 
-  // ページを再読み込み
+  // 今日のチェック状態も削除
+  localStorage.removeItem(dateKey);
+
+  // 再読み込み
   location.reload();
 }
 
