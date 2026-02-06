@@ -79,7 +79,6 @@ function render(){
         if (isDone) {
           playRandomEffect(div);
           createStar(e.clientX, e.clientY);
-          playSound();
         }
         render();
       };
@@ -120,9 +119,13 @@ function render(){
       else allDone=false;
 
       d.onclick=()=>{
-        d.classList.toggle("done");
-        doneData[id]=d.classList.contains("done");
-        localStorage.setItem(dateKey,JSON.stringify(doneData));
+        const isDone = d.classList.toggle("done");
+        doneData[id] = isDone;
+        localStorage.setItem(dateKey, JSON.stringify(doneData));
+        if (isDone) {
+          playRandomEffect(div);
+          createStar(e.clientX, e.clientY);
+        }
         render();
       };
 
@@ -244,11 +247,4 @@ function createStar(x, y) {
 
   setTimeout(() => star.remove(), 1000);
 }
-const okSound = new Audio("sounds/ok.mp3");
-
-function playSound() {
-  okSound.currentTime = 0;
-  okSound.play();
-}
-
 loadTaskData();
