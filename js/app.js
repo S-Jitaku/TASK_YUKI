@@ -52,12 +52,6 @@ function getTodayTasks() {
   const common = taskData.common;
   let result = { morning: [], evening: [], night: [], lesson: [] };
   for (let k in result) result[k] = [...common[k], ...base[k]];
-
-  if (isSchoolEnabled) {
-    result.morning = [...result.morning, ...common.school.morning];
-    result.evening = [...result.evening, ...common.school.evening];
-    result.night = [...result.night, ...common.school.night];
-  }
   return result;
 }
 
@@ -218,11 +212,6 @@ function importData(e){
 
 function closeParent(){
   parentPanel.style.display="none";
-}
-
-function toggleSchoolTasks(){
-  isSchoolEnabled=schoolToggle.checked;
-  render();
 }
 
 function resetToInitial() {
