@@ -30,7 +30,6 @@ document.getElementById("date").textContent =
 let taskData = null;
 let doneData = JSON.parse(localStorage.getItem(dateKey)) || {};
 const labels={morning:"あさ",evening:"ゆうがた",night:"ねるまえ",lesson:"ならいごと"};
-let isSchoolEnabled = false;
 
 // taskData.json 自動読み込み
 async function loadTaskData(){
@@ -261,7 +260,5 @@ function playSound() {
   okSound.currentTime = 0;
   okSound.play();
 }
-let celebrateTimer = null;
-
 
 loadTaskData();
