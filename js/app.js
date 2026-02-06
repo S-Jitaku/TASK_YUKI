@@ -80,9 +80,14 @@ function render(){
       if(doneData[id]){div.classList.add("done");count++;}
 
       div.onclick=()=>{
-        div.classList.toggle("done");
-        doneData[id]=div.classList.contains("done");
-        localStorage.setItem(dateKey,JSON.stringify(doneData));
+        const isDone = div.classList.toggle("done");
+        doneData[id] = isDone;
+        localStorage.setItem(dateKey, JSON.stringify(doneData));
+        if (isDone) {
+          playRandomEffect(div);
+          createStar(e.clientX, e.clientY);
+          playSound();
+        }
         render();
       };
 
@@ -141,6 +146,7 @@ function render(){
   taskArea.appendChild(lessonSec);
 
   document.getElementById("counter").textContent=`できたよ: ${count}/${total}`;
+  checkCompleteEffect(count, total);
 }
 
 // ===== 編集 =====
@@ -234,5 +240,45 @@ function resetToInitial() {
   // 再読み込み
   location.reload();
 }
+function playRandomEffect(el) {
+  const effects = ["effect-pop", "effect-spin", "effect-float"];
+  const effect = effects[Math.floor(Math.random() * effects.length)];
 
+  el.classList.add("effect", effect);
+
+  setTimeout(() => {
+    el.classList.remove("effect", effect);
+  }, 600);
+}
+function createStar(x, y) {
+  const star = document.createElement("div");
+  star.textContent = "⭐";
+  star.className = "star";
+
+  const dx = (Math.random() - 0.5) * 200;
+  const dy = -Math.random() * 200;
+
+  star.style.left = x + "px";
+  star.style.top = y + "px";
+  star.style.setProperty("--x", dx + "px");
+  star.style.setProperty("--y", dy + "px");
+
+  document.body.appendChild(star);
+
+  setTimeout(() => star.remove(), 1000);
+}
+const okSound = new Audio("sounds/ok.mp3");
+
+function playSound() {
+  okSound.currentTime = 0;
+  okSound.play();
+}
+function checkCompleteEffect(count, total) {
+  if (count === total && total > 0) {
+    document.body.classList.add("celebrate");
+    alert("🎉 ぜんぶできたね！すごい！！ 🎉");
+  } else {
+    document.body.classList.remove("celebrate");
+  }
+}
 loadTaskData();
