@@ -239,7 +239,7 @@ function playRandomEffect(el) {
 }
 function createStar(x, y) {
   // 5つの星を表示するためにループを使う
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 30; i++) {
     const star = document.createElement("div");
     star.textContent = "⭐";
     star.className = "star";
