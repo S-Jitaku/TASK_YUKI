@@ -79,7 +79,7 @@ function render(){
 
       if(doneData[id]){div.classList.add("done");count++;}
 
-      div.onclick=()=>{
+      div.onclick = (e) => {
         const isDone = div.classList.toggle("done");
         doneData[id] = isDone;
         localStorage.setItem(dateKey, JSON.stringify(doneData));
